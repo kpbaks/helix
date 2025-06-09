@@ -1,0 +1,53 @@
+"attribute" = ""
+
+"comment" = "comment"
+
+"keyword" = ""
+"keyword.control" = ""
+"keyword.operator" = ""
+"keyword.directive" = ""
+"keyword.function" = ""
+"keyword.storage" = ""
+
+"label" = ""
+
+"constant" = ""
+"constant.builtin" = ""
+"constant.character" = ""
+"constant.numeric" = ""
+"constant.character.escape" = ""
+
+"markup" = ""
+"markup.heading" = ""
+"markup.list" = ""
+"markup.bold" = ""
+"markup.italic" = ""
+"markup.link" = ""
+"markup.quote" = ""
+"diff.plus" = ""
+"diff.minus" = ""
+"diff.delta" = ""
+"diff.delta.moved" = ""
+"punctuation.delimiter" = ""
+"punctuation.bracket" = ""
+"punctuation.special" = ""
+
+"variable" = "light_4"
+"variable.parameter" = "orange_2"
+"variable.builtin" = "orange_2"
+"variable.other" = "teal_2"
+"variable.other.member" = "teal_2"
+
+
+[palette]
+background = "#212337"
+current-line = "#323449"
+foreground = "#ebfafa"
+comment = "#7081d0"
+cyan = "#04d1f9"
+green = "#37f499"
+orange = "#f7c67f"
+pink = "#f265b5"
+purple = "#a48cf2"
+red = "#f16c75"
+yellow = "#f1fc79"
