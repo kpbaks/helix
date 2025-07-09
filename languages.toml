@@ -555,6 +555,35 @@ language-servers = [ "vscode-json-language-server" ]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
+# https://jsonlines.org/
+[[language]]
+name = "jsonlines"
+scope = "source.jsonlines"
+injection-regex = "jsonlines"
+grammar = "json"
+file-types = ["jsonl", "ndjson"]
+auto-format = false
+
+[language.formatter]
+command = "jq"
+args = [
+  "--raw-output",
+  # Example: `{"timestamp":"1752091805","level":"info"}` -> `{ "timestamp": "1752091805", "level": "info" }`
+  # jq
+  """
+    def format_value_single_line:
+      if type == "object" then
+        "{ " + (to_entries | map("\\(.key | @json): " + (.value | format_value_single_line)) | join(", ")) + " }"
+      elif type == "array" then
+        "[" + (map(format_value_single_line) | join(", ")) + "]"
+      elif type == "string" then @json
+      else tostring
+      end;
+
+    format_value_single_line
+  """,
+]
+
 [[language]]
 name = "json5"
 scope = "source.json5"

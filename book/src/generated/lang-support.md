@@ -122,6 +122,7 @@
 | json | ✓ | ✓ | ✓ | `vscode-json-language-server` |
 | json5 | ✓ |  |  |  |
 | jsonc | ✓ |  | ✓ | `vscode-json-language-server` |
+| jsonlines | ✓ | ✓ |  |  |
 | jsonnet | ✓ |  |  | `jsonnet-language-server` |
 | jsx | ✓ | ✓ | ✓ | `typescript-language-server` |
 | julia | ✓ | ✓ | ✓ | `julia` |
