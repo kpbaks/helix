@@ -233,3 +233,11 @@
   (comment)+ @comment.block.documentation
   .
   (var_declaration))
+
+; Highlight go stdlib imports as builtins to better separate them at a glance
+; The list of stdlib modules can be found at https://pkg.go.dev/std
+; NOTE: #match? is used instead of #any-of? to be more robust when additional submodules
+; are added in future releases of Go.
+((import_spec
+  path: (interpreted_string_literal) @variable.builtin)
+ (#match? @variable.builtin "^\"(archive|bufio|builtin|bytes|cmp|compress|container|context|crypto|database|debug|embed|encoding|errors|expvar|flag|fmt|go|hash|html|image|index|io|iter|log|maps|math|mtime|net|os|path|plugin|reflect|regexp|runtime|slices|sort|strconv|strings|structs|sync|syscall|testing|text|time|unicode|unique|unsafe|weak)(/.+)?\""))
