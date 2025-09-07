@@ -4768,3 +4768,16 @@ comment-token = "#"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["docker-language-server"]
+
+[[language]]
+name = "bruno"
+scope = "source.bruno"
+injection-regex = "bru(no)"
+file-types = ["bru"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "bruno"
+source = { git = "https://github.com/Scalamando/tree-sitter-bruno", rev = "dd27fe0eff8e7f8184dfc91e426b886dc8369c46" }
