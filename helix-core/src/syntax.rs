@@ -377,10 +377,22 @@ impl Loader {
     pub fn language_for_filename(&self, path: &Path) -> Option<Language> {
         // Find all the language configurations that match this file name
         // or a suffix of the file name.
+        const SPECIAL_SUFFIXES: &[&str] = &["in", "bk", "bak", "orig", "sample", "tmp", "temp"];
+
+        let is_special_suffix = path
+            .extension()
+            .and_then(|ext| ext.to_str())
+            .map_or(false, |ext| SPECIAL_SUFFIXES.contains(&ext));
+
+        let path = if is_special_suffix {
+            path.with_extension("")
+        } else {
+            path.to_path_buf()
+        };
 
         // TODO: content_regex handling conflict resolution
         self.languages_glob_matcher
-            .language_for_path(path)
+            .language_for_path(&path)
             .or_else(|| {
                 path.extension()
                     .and_then(|extension| extension.to_str())
