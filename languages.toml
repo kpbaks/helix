@@ -4963,3 +4963,16 @@ indent = {tab-width = 2, unit = "  "}
 [[grammar]]
 name = "bovex"
 source = { git = "https://github.com/mi2ebi/tree-sitter-bovex", rev = "de7657a9cc3525b9b77c6d268da09dad5b1346b0" }
+
+# https://pomsky-lang.org/
+[[language]]
+name = "pomsky"
+scope = "source.pomsky"
+injection-regex = "pomsky"
+file-types = ["pom", "pomsky"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "pomsky"
+source = { git = "https://github.com/pomsky-lang/tree-sitter-pomsky", rev = "f400fe869b6aca520f16ccc455d9920ac95f6964" }
