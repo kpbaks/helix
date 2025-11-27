@@ -94,6 +94,7 @@ ocamllsp = { command = "ocamllsp" }
 ols = { command = "ols", args = [] }
 omnisharp = { command = "OmniSharp", args = [ "--languageserver" ] }
 openscad-lsp = { command = "openscad-lsp", args = ["--stdio"] }
+oxc_language_server = { command = "oxc_language_server" }
 pasls = { command = "pasls", args = [] }
 pbkit = { command = "pb", args = [ "lsp" ] }
 perlnavigator = { command = "perlnavigator", args= ["--stdio"] }
@@ -895,7 +896,10 @@ shebangs = ["node"]
 roots = [ "package.json", "jsconfig.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server" ]
+language-servers = [
+  "typescript-language-server",
+  "oxc_language_server"
+]
 indent = { tab-width = 2, unit = "  " }
 
 [language.debugger]
@@ -938,7 +942,10 @@ shebangs = ["deno", "bun", "ts-node"]
 roots = [ "package.json", "tsconfig.json" ]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server" ]
+language-servers = [
+  "typescript-language-server",
+  "oxc_language_server"
+]
 indent = { tab-width = 2, unit = "  " }
 
 [[grammar]]
