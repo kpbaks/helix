@@ -24,6 +24,14 @@ pub(crate) fn path_completion(
         return None;
     }
 
+    // FIXME: right now completion already show up a file:/ and file:// but those will not result in a valid file:// scheme url
+    // it needs to be file:///
+    // file:/<|>
+    // file://<|>
+    // fiele:///<|> # here completion should happen
+    // git+file:/<|>
+    // git+file://<|>
+    // git+fiele:///<|> # here completion should happen
     let text = doc.text().clone();
     let cursor = selection.primary().cursor(text.slice(..));
     let cur_line = text.char_to_line(cursor);
@@ -33,14 +41,17 @@ pub(crate) fn path_completion(
     let (dir_path, typed_file_name) =
         get_path_suffix(line_until_cursor, false).and_then(|matched_path| {
             let matched_path = Cow::from(matched_path);
-            let path: Cow<_> = if matched_path.starts_with("file://") {
-                Url::from_str(&matched_path)
-                    .ok()
-                    .and_then(|url| url.to_file_path().ok())?
-                    .into()
-            } else {
-                Path::new(&*matched_path).into()
-            };
+            // The "git+file://" scheme is specific to Nix flake references
+            // <https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-flake#url-like-syntax>
+            let path: Cow<_> =
+                if matched_path.starts_with("file://") || matched_path.starts_with("git+file://") {
+                    Url::from_str(&matched_path)
+                        .ok()
+                        .and_then(|url| url.to_file_path().ok())?
+                        .into()
+                } else {
+                    Path::new(&*matched_path).into()
+                };
             let path = path::expand(&path);
             let parent_dir = doc.path().and_then(|dp| dp.parent());
             let path = match parent_dir {
