@@ -5323,3 +5323,17 @@ comment-token = "#"
 [[grammar]]
 name = "gnuplot"
 source = { git = "https://codeberg.org/maribu/tree-sitter-gnuplot", rev = "21a3a3929facb964b3592daeb69119294ff84cf2" }
+
+[[language]]
+name = "firm"
+scope = "source.firm"
+file-types = ["firm"]
+injection-regex = "firm"
+indent = { tab-width = 4, unit = "    " }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+# language-servers = ["firm"]
+
+[[grammar]]
+name = "firm"
+source = { git = "https://github.com/42futures/tree-sitter-firm", rev = "0b4637918f0380224530aa4d8d7974fc5d7d3530" }
