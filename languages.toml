@@ -252,6 +252,11 @@ inlayHints.typeHints.hideClosureInitialization = false
 [language-server.rust-analyzer.config.files]
 watcher = "server"
 
+# https://rust-glancer.github.io/
+[language-server.rust-glancer]
+command = "rust-glancer"
+args = [ "lsp" ]
+
 [language-server.typescript-language-server]
 command = "typescript-language-server"
 args = ["--stdio"]
@@ -352,7 +357,7 @@ block-comment-tokens = [
   { start = "/**", end = "*/" },
   { start = "/*!", end = "*/" },
 ]
-language-servers = [ "rust-analyzer" ]
+language-servers = [ "rust-analyzer", "rust-glancer" ]
 indent = { tab-width = 4, unit = "    " }
 persistent-diagnostic-sources = ["rustc", "clippy"]
 
