@@ -2677,6 +2677,20 @@ language-servers = [ "nu-lsp", "nu-lint" ]
 formatter = { command = "nufmt", args = ["--stdin"] } # https://github.com/nushell/nufmt
 auto-format = false
 
+# TODO: test once https://www.nushell.sh/blog/2026-09-26-nushell_v0_116_0.html#nu-dap-starts-a-debug-adapter-protocol-server-for-nushell-scripts
+# has landed in nixpkgs
+[language.debugger]
+name = "nu"
+transport = "stdio"
+command = "nu"
+args = ["--dap"]
+
+# [[language.debugger.templates]]
+# name = "source"
+# request = "launch"
+# completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+# args = { mode = "debug", program = "{0}" }
+
 [[grammar]]
 name = "nu"
 source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "cc4624fbc6ec3563d98fbe8f215a8b8e10b16f32" }
