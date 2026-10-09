@@ -150,6 +150,7 @@ sourcekit-lsp = { command = "sourcekit-lsp" }
 spade-language-server = {command = "swim", args = ["lsp"]}
 starpls = {command = "starpls"}
 styx = { command = "styx", args = ["lsp"] }
+svg-language-server = { command = "svg-langauge-server", args = ["--stdio"] }
 svlangserver = { command = "svlangserver", args = [], config.systemverilog.includeIndexing = ["*.{v,vh,sv,svh}", "**/*.{v,vh,sv,svh}"] }
 swipl = { command = "swipl", args = [ "-g", "use_module(library(lsp_server))", "-g", "lsp_server:main", "-t", "halt", "--", "stdio" ] }
 superhtml = {  command = "superhtml", args = ["lsp"]}
@@ -5655,3 +5656,53 @@ comment-tokens = ["REM", "::"]
 [[grammar]]
 name = "batch"
 source = { git = "https://github.com/wharflab/tree-sitter-batch", rev = "5fc5f54267ef9a78e7a5319b80e092194252aabf" }
+
+[[language]]
+name = "svg"
+scope = "source.svg"
+injection-regex = "svg"
+file-types = [ "svg" ]
+block-comment-tokens = { start = "<!--", end = "-->" }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["svg-language-server"]
+formatter = { command = "svg-format", args = ["--stdin"] }
+auto-format = true
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+"'" = "'"
+"<" = ">"
+
+[[grammar]]
+name = "svg"
+source = { git = "https://github.com/kjanat/svg", rev = "26c7414e2f02f854dab4102fba4c930936d2c18c", subpath = "tree-sitter-svg" }
+
+[[language]]
+name = "svg-paint"
+scope = "source.svg-paint"
+file-types = []
+
+[[grammar]]
+name = "svg-paint"
+source = { git = "https://github.com/kjanat/svg", rev = "26c7414e2f02f854dab4102fba4c930936d2c18c", subpath = "tree-sitter-svg-paint" }
+
+[[language]]
+name = "svg-path"
+scope = "source.svg-path"
+file-types = []
+
+[[grammar]]
+name = "svg-path"
+source = { git = "https://github.com/kjanat/svg", rev = "26c7414e2f02f854dab4102fba4c930936d2c18c", subpath = "tree-sitter-svg-path" }
+
+[[language]]
+name = "svg-transform"
+scope = "source.svg-transform"
+file-types = []
+
+[[grammar]]
+name = "svg-transform"
+source = { git = "https://github.com/kjanat/svg", rev = "26c7414e2f02f854dab4102fba4c930936d2c18c", subpath = "tree-sitter-svg-transform" }
